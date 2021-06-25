@@ -33,13 +33,13 @@ char* getOptions(int option, User* user)
 {
     switch (option)
     {
-        case 1:
-            return "Iniciar Sesion";
-        case 2:
-            return "Registrar";
-        case 3:
-            return "Option 3";
         case 0:
+            return "Iniciar Sesion";
+        case 1:
+            return "Registrar";
+        case 2:
+            return "Option 3";
+        case 3:
             return "Salir";
     }
 }
@@ -51,18 +51,17 @@ void useOptions(int* option, User* user, Map* users)
     switch (*option)
     {
         case 0:
-            *option = -1;
+            copyUser(user, logIn(users));
             break;
         case 1:
-            copyUser(user, logIn(users));
-            if (user != NULL) printf("Sesion iniciada correctamente!\n");
-            break;
-        case 2:
             registerUser(users);
             break;
-        case 3:
+        case 2:
             //User* aux = searchMap(users, getRut(user));
             printUser(user);
+            break;
+        case 3:
+            *option = -1;
             break;
     }
 }
@@ -95,7 +94,7 @@ int main()
     Map* users = createMap(is_equal_string);
     setSortFunction(users, lower_than_string);
 
-    User* currentUser = createEmptyUser();
+    User* currentUser;
     int currentOption = 0;
     int oldCurrent = -1;
 
