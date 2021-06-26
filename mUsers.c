@@ -44,11 +44,22 @@ User* createUser(char* name, char* surname, char* rut, bool admin)
 
 void copyUser(User* copy, User* toCopy)
 {
+<<<<<<< HEAD
     copy->rut = toCopy->rut;
     copy->name = toCopy->name;
     copy->surname = toCopy->surname;
     copy->admin = toCopy->admin;
     copy->discounts = toCopy->discounts;
+=======
+    if (toCopy == NULL) return;
+
+    copy = createUser(toCopy->name, toCopy->surname, toCopy->rut, toCopy->admin);
+    // strcpy(copy->name, toCopy->name);
+    // strcpy(copy->surname, toCopy->surname);
+    // strcpy(copy->rut, toCopy->rut);
+    // copy->admin = toCopy->admin;
+    // copy->discounts = toCopy->discounts;
+>>>>>>> 2d8356dffbb9edb780bc897b0d016380b72f0868
 }
 
 void registerUser(Map* users)
@@ -111,6 +122,10 @@ void printUser(User* user)
         return;
     }        
 
+<<<<<<< HEAD
+=======
+    //printf("HOLA\n");
+>>>>>>> 2d8356dffbb9edb780bc897b0d016380b72f0868
     printf("Nombre: %s\n", user->name);
     printf("Apellido: %s\n", user->surname);
     printf("RUT: %s\n", user->rut);

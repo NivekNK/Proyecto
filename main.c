@@ -38,7 +38,11 @@ char* getOptions(int option)
         case 1:
             return "Registrar";
         case 2:
+<<<<<<< HEAD
             return "Option 2";
+=======
+            return "Option 3";
+>>>>>>> 2d8356dffbb9edb780bc897b0d016380b72f0868
         case 3:
             return "Salir";
     }
@@ -49,6 +53,7 @@ void useOptions(int* option, User* currentUser, Map* users)
     switch (*option)
     {
         case 0:
+<<<<<<< HEAD
             if (strlen(getRut(currentUser)) == 0)
             {
                 copyUser(currentUser, logIn(users));
@@ -63,6 +68,19 @@ void useOptions(int* option, User* currentUser, Map* users)
             break;
         case 2:
             printUser(currentUser);
+            break;
+        case 3:
+            *option = -1;
+=======
+            copyUser(user, logIn(users));
+            break;
+        case 1:
+            registerUser(users);
+            break;
+        case 2:
+            //User* aux = searchMap(users, getRut(user));
+            printUser(user);
+>>>>>>> 2d8356dffbb9edb780bc897b0d016380b72f0868
             break;
         case 3:
             *option = -1;
@@ -98,9 +116,13 @@ int main()
     Map* users = createMap(is_equal_string);
     setSortFunction(users, lower_than_string);
 
+<<<<<<< HEAD
     User* currentUser = createEmptyUser();
     setRut(currentUser, "");
 
+=======
+    User* currentUser;
+>>>>>>> 2d8356dffbb9edb780bc897b0d016380b72f0868
     int currentOption = 0;
     int oldCurrent = -1;
 
