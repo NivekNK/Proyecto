@@ -15,6 +15,8 @@ void registerUser(Map* users);
 
 User* logIn(Map* users);
 
+void logOut(User* user);
+
 bool isAdmin(User* user);
 
 char* getRut(User* user);

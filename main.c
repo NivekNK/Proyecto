@@ -38,8 +38,10 @@ char* getOptions(int option)
         case 1:
             return "Registrar";
         case 2:
-            return "Option 2";
+            return "Cerrar Sesion";
         case 3:
+            return "Crear Item";
+        case 4:
             return "Salir";
     }
 }
@@ -62,9 +64,12 @@ void useOptions(int* option, User* currentUser, Map* users)
             registerUser(users);
             break;
         case 2:
-            printUser(currentUser);
+            logOut(currentUser);
             break;
         case 3:
+            //createItem();
+            break;
+        case 4:
             *option = -1;
             break;
     }
@@ -85,7 +90,7 @@ void getCurrentOption(int* currentOption, int options, User* currentUser, Map* u
                 *currentOption = *currentOption + 1;
             break;
         case '\r':
-            // go to selected option
+            // go to selected option with enter
             useOptions(currentOption, currentUser, users);
             break;
         default:
