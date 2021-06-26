@@ -19,6 +19,8 @@ bool isAdmin(User* user);
 
 char* getRut(User* user);
 
+void setRut(User* user, char* s);
+
 void printUser(User* user);
 
 #endif /* M_Users */

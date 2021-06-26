@@ -29,45 +29,48 @@ void colorPrint(const char* s, int color)
     SetConsoleTextAttribute(handle, FOREGROUND_INTENSITY | 7);
 }
 
-char* getOptions(int option, User* user)
+char* getOptions(int option)
 {
     switch (option)
     {
-        case 1:
-            return "Iniciar Sesion";
-        case 2:
-            return "Registrar";
-        case 3:
-            return "Option 3";
         case 0:
+            return "Iniciar Sesion";
+        case 1:
+            return "Registrar";
+        case 2:
+            return "Option 2";
+        case 3:
             return "Salir";
     }
 }
 
-void useOptions(int* option, User* user, Map* users)
+void useOptions(int* option, User* currentUser, Map* users)
 {
-    char* rut = (char*)malloc(sizeof(char) * 20);
-
     switch (*option)
     {
         case 0:
-            *option = -1;
+            if (strlen(getRut(currentUser)) == 0)
+            {
+                copyUser(currentUser, logIn(users));
+            }
+            else
+            {
+                printf("Ya esta iniciada la sesion!");
+            }
             break;
         case 1:
-            copyUser(user, logIn(users));
-            if (user != NULL) printf("Sesion iniciada correctamente!\n");
-            break;
-        case 2:
             registerUser(users);
             break;
+        case 2:
+            printUser(currentUser);
+            break;
         case 3:
-            //User* aux = searchMap(users, getRut(user));
-            printUser(user);
+            *option = -1;
             break;
     }
 }
 
-void getCurrentOption(int* currentOption, int options, User* user, Map* users)
+void getCurrentOption(int* currentOption, int options, User* currentUser, Map* users)
 {
     switch(getch())
     {
@@ -83,7 +86,7 @@ void getCurrentOption(int* currentOption, int options, User* user, Map* users)
             break;
         case '\r':
             // go to selected option
-            useOptions(currentOption, user, users);
+            useOptions(currentOption, currentUser, users);
             break;
         default:
             break;
@@ -96,6 +99,8 @@ int main()
     setSortFunction(users, lower_than_string);
 
     User* currentUser = createEmptyUser();
+    setRut(currentUser, "");
+
     int currentOption = 0;
     int oldCurrent = -1;
 
@@ -103,7 +108,7 @@ int main()
 
     do
     {
-        if (currentUser == NULL)
+        if (strlen(getRut(currentUser)) == 0)
         {
             options = NOREGISTER;
         }
@@ -118,17 +123,21 @@ int main()
         if (oldCurrent != currentOption)
         {
             system("cls");
-            // printf("Current: %i\n", currentOption);
-            // printf("Total: %i\n", options);
+            
+            if (strlen(getRut(currentUser)) == 0) colorPrint("No Registrado", 6);
+            else if (isAdmin(currentUser)) colorPrint("Administrador", 5);
+            else colorPrint("Socio", 3);
+            printf("\n");
+
             for (int i = 0; i < options; i++)
             {
                 if (i == currentOption)
                 {
-                    colorPrint(getOptions(i, currentUser), 4);
+                    colorPrint(getOptions(i), 4);
                 }
                 else
                 {
-                    printf("%s\n", getOptions(i, currentUser));
+                    printf("%s\n", getOptions(i));
                 }
             }
         }

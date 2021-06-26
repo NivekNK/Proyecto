@@ -44,27 +44,27 @@ User* createUser(char* name, char* surname, char* rut, bool admin)
 
 void copyUser(User* copy, User* toCopy)
 {
-    strcpy(copy->name, toCopy->name);
-    strcpy(copy->surname, toCopy->surname);
-    strcpy(copy->rut, toCopy->rut);
+    copy->rut = toCopy->rut;
+    copy->name = toCopy->name;
+    copy->surname = toCopy->surname;
     copy->admin = toCopy->admin;
     copy->discounts = toCopy->discounts;
 }
 
 void registerUser(Map* users)
 {    
+    char* rut =(char*)malloc(sizeof(char) * 20);
     char* name = (char*)malloc(sizeof(char) * 20);
     char* surname = (char*)malloc(sizeof(char) * 20);
-    char* rut =(char*)malloc(sizeof(char) * 20);
     char* esAdmin = (char*)malloc(sizeof(char) * 3);
     bool admin = false;
 
+    printf("Ingrese RUT: ");
+    scanf("%s", rut);
     printf("Ingrese Nombre: ");
     scanf("%s", name);
     printf("Ingrese Apellido: ");
-    scanf("%s", surname);
-    printf("Ingrese RUT: ");
-    scanf("%s", rut);
+    scanf("%s", surname);   
     printf("El nuevo usuario es administrador?, ingrese SI o NO: ");
     scanf("%s", esAdmin);
     // falta ciclo para comprobar esAdmin //
@@ -84,6 +84,7 @@ User* logIn(Map* users)
     scanf("%s", rut);
 
     User* user = searchMap(users, rut);
+    free(rut);
     return user;
 }
 
@@ -97,15 +98,19 @@ char* getRut(User* user)
     return user->rut;
 }
 
+void setRut(User* user, char* s)
+{
+    user->rut = s;
+}
+
 void printUser(User* user)
 {
-    if (user == NULL)
+    if (strlen(getRut(user)) == 0)
     {
         printf("Sesion no iniciada!");
         return;
-    }
+    }        
 
-    printf("HOLA\n");
     printf("Nombre: %s\n", user->name);
     printf("Apellido: %s\n", user->surname);
     printf("RUT: %s\n", user->rut);
