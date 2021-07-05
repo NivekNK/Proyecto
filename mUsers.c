@@ -44,12 +44,6 @@ User* createUser(char* name, char* surname, char* rut, bool admin)
 
 void copyUser(User* copy, User* toCopy)
 {
-    if (toCopy == NULL)
-    {
-        printf("Usuario no encontrado!\n");
-        return;
-    }
-
     copy->rut = toCopy->rut;
     copy->name = toCopy->name;
     copy->surname = toCopy->surname;
@@ -91,15 +85,7 @@ User* logIn(Map* users)
 
     User* user = searchMap(users, rut);
     free(rut);
-    if (user) return user;
-    else return NULL;
-}
-
-void logOut(User* user)
-{
-    User* empty = createEmptyUser();
-    empty->rut = "";
-    copyUser(user, empty);
+    return user;
 }
 
 bool isAdmin(User* user)
