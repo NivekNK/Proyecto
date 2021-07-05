@@ -1,2 +1,6 @@
-Juan,Perez,11.456.887-5,0,0
-Gonzalo,Alvarez,19.456.983-3,1,1
+Nombre,Apellido,RUT,esAdmin,
+Kevin,Rojas,20.410.798-K,SI,
+Juan,Perez,20.410.799-8,NO,
+Gonzalo,Alvarez,20.410.802-1,SI,
+Julio,Rodriguez,20.410.805-6,NO,
+Manuel,Rojas,20.410.807-2,NO,
