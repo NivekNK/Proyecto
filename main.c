@@ -35,7 +35,7 @@ char* getOptions(int option, int options)
 {
     if (options == 7)
     {
-        //opciones usuario no registrado
+        //Opciones usuario no registrado
         switch (option)
         {
             case 0:
@@ -56,7 +56,7 @@ char* getOptions(int option, int options)
     }
     else if (options == 8)
     {
-        //opciones socio
+        //Opciones socio
         switch (option)
         {
             case 0:
@@ -123,7 +123,7 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
 {
     if (options == 7)
     {
-        //funciones usuarios no registrados
+        //Funciones usuarios no registrados
         switch (*option)
         {
             case 0:
@@ -151,7 +151,7 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
     }
     else if (options == 8)
     {
-        //funciones socio
+        //Funciones socio
         switch (*option)
         {
             case 0:
@@ -183,7 +183,7 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
     }
     else
     {
-        //funciones administrador
+        //Funciones administrador
         switch (*option)
         {
             case 0:
@@ -250,7 +250,7 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
 void getCurrentOption(int* currentOption, int options, User* currentUser, Map* users, Map* category, 
     Map* itemPerId, Map* itemPerBrand, Map* itemPerPrice, Map* itemPerName, bool* imported)
 {
-    //codigo que se usa para mover los colores en el menu con flechas
+    //Codigo que se usa para mover los colores en el menu con flechas
     switch(getch())
     {
         case 72:
@@ -274,7 +274,7 @@ void getCurrentOption(int* currentOption, int options, User* currentUser, Map* u
 
 int main()
 {
-    //son los mapas y estructuras que se usan(ver informe)
+    //Son los mapas y estructuras que se usan(ver informe)
     Map* users = createMap(is_equal_string);
     setSortFunction(users, lower_than_string);
 
@@ -303,7 +303,7 @@ int main()
     bool imported = false;
     importUsers(users);
 
-    //verificacion de identidad para menu lo que permite que se separen en 3 tipos
+    //Verificacion de identidad para menu lo que permite que se separen en 3 tipos
     do
     {
         if (strlen(getRut(currentUser)) == 0)
