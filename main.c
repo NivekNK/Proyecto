@@ -33,6 +33,7 @@ void colorPrint(const char* s, int color)
 
 char* getOptions(int option, int options)
 {
+    //opciones usuario no registrado
     if (options == 7)
     {
         switch (option)
@@ -53,6 +54,7 @@ char* getOptions(int option, int options)
                 return "Salir";
         }
     }
+    //opciones administrador
     else if (options == 8)
     {
         switch (option)
@@ -77,6 +79,7 @@ char* getOptions(int option, int options)
     }
     else
     {
+        //opciones socio
         switch (option)
         {
             case 0:
@@ -118,6 +121,7 @@ char* getOptions(int option, int options)
 void useOptions(int* option, int options, User* currentUser, Map* users, Map* category, 
     Map* itemPerId, Map* itemPerBrand, Map* itemPerPrice, Map* itemPerName, bool* imported)
 {
+    //funciones usuarios no registrados
     if (options == 7)
     {
         switch (*option)
@@ -145,6 +149,7 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
                 break;
         }
     }
+    funciones socio
     else if (options == 8)
     {
         switch (*option)
@@ -178,6 +183,7 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
     }
     else
     {
+        //funciones socio (todas)
         switch (*option)
         {
             case 0:
@@ -244,6 +250,7 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
 void getCurrentOption(int* currentOption, int options, User* currentUser, Map* users, Map* category, 
     Map* itemPerId, Map* itemPerBrand, Map* itemPerPrice, Map* itemPerName, bool* imported)
 {
+    //codigo que se usa para mover los colores en el menu con flechas
     switch(getch())
     {
         case 72:
@@ -267,6 +274,7 @@ void getCurrentOption(int* currentOption, int options, User* currentUser, Map* u
 
 int main()
 {
+    //son los mapas y estructuras que se usan(ver informe)
     Map* users = createMap(is_equal_string);
     setSortFunction(users, lower_than_string);
 
@@ -294,7 +302,7 @@ int main()
 
     bool imported = false;
     importUsers(users);
-
+//verificacion de identidad para menu lo que permite que se separen en 3 tipos
     do
     {
         if (strlen(getRut(currentUser)) == 0)
