@@ -33,9 +33,9 @@ void colorPrint(const char* s, int color)
 
 char* getOptions(int option, int options)
 {
-    //opciones usuario no registrado
     if (options == 7)
     {
+        //opciones usuario no registrado
         switch (option)
         {
             case 0:
@@ -54,9 +54,9 @@ char* getOptions(int option, int options)
                 return "Salir";
         }
     }
-    //opciones administrador
     else if (options == 8)
     {
+        //opciones socio
         switch (option)
         {
             case 0:
@@ -79,7 +79,7 @@ char* getOptions(int option, int options)
     }
     else
     {
-        //opciones socio
+        //opciones administrador
         switch (option)
         {
             case 0:
@@ -121,9 +121,9 @@ char* getOptions(int option, int options)
 void useOptions(int* option, int options, User* currentUser, Map* users, Map* category, 
     Map* itemPerId, Map* itemPerBrand, Map* itemPerPrice, Map* itemPerName, bool* imported)
 {
-    //funciones usuarios no registrados
     if (options == 7)
     {
+        //funciones usuarios no registrados
         switch (*option)
         {
             case 0:
@@ -149,9 +149,9 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
                 break;
         }
     }
-    funciones socio
     else if (options == 8)
     {
+        //funciones socio
         switch (*option)
         {
             case 0:
@@ -183,7 +183,7 @@ void useOptions(int* option, int options, User* currentUser, Map* users, Map* ca
     }
     else
     {
-        //funciones socio (todas)
+        //funciones administrador
         switch (*option)
         {
             case 0:
@@ -302,7 +302,8 @@ int main()
 
     bool imported = false;
     importUsers(users);
-//verificacion de identidad para menu lo que permite que se separen en 3 tipos
+
+    //verificacion de identidad para menu lo que permite que se separen en 3 tipos
     do
     {
         if (strlen(getRut(currentUser)) == 0)
